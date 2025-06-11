@@ -79,9 +79,7 @@ public class BookingService {
         int hour = dateTime.getHour();
         for (int i = 0; i < durationHours; i++) {
             if (!tutor.isAvailable(day, hour + i)) {
-                System.out.println("Tutor is not available at this time");
-                return null;
-                // throw new Exception("Tutor is not available at this time");
+                throw new Exception("Tutor is not available at this time");
             }
         }
 
@@ -102,10 +100,15 @@ public class BookingService {
     }
 
     private boolean isTimeConflict(Booking existing, LocalDateTime newTime, int newDuration) {
-        LocalDateTime existingEnd = existing.getDateTime().plusHours(existing.getDurationHours());
-        LocalDateTime newEnd = newTime.plusHours(newDuration);
+        LocalDateTime existingStart = existing.getDateTime();
+        LocalDateTime existingEnd = existingStart.plusHours(existing.getDurationHours());
 
-        return !(newEnd.isBefore(existing.getDateTime()) || newTime.isAfter(existingEnd));
+        LocalDateTime newStart = newTime;
+        LocalDateTime newEnd = newStart.plusHours(newDuration);
+
+        // A conflict exists if the new booking starts before the existing one ends,
+        // AND the new booking ends after the existing one starts.
+        return newStart.isBefore(existingEnd) && newEnd.isAfter(existingStart);
     }
 
     public void confirmBooking(String bookingId, Payment payment) throws Exception {

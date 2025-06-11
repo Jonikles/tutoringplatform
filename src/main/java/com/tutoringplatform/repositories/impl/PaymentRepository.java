@@ -7,8 +7,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.tutoringplatform.command.IPaymentRepository;
 import com.tutoringplatform.models.Payment;
+import com.tutoringplatform.repositories.interfaces.IPaymentRepository;
 
 @Repository
 public class PaymentRepository implements IPaymentRepository {

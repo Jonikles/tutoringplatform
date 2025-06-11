@@ -10,6 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
+import java.util.Stack;
 
 import java.time.LocalDateTime;
 
@@ -40,6 +41,8 @@ class PaymentServiceTest {
         ReflectionTestUtils.setField(paymentService, "paymentRepository", paymentRepository);
         ReflectionTestUtils.setField(paymentService, "studentRepository", studentRepository);
         ReflectionTestUtils.setField(paymentService, "bookingRepository", bookingRepository);
+
+        ReflectionTestUtils.setField(paymentService, "commandHistory", new Stack<IPaymentCommand>());
 
         testStudent = new Student("John Doe", "john@student.com", "password123");
         testStudent.setBalance(200.0);
@@ -132,7 +135,8 @@ class PaymentServiceTest {
 
         assertEquals(200.0, testStudent.getBalance());
         assertEquals(Payment.PaymentStatus.REFUNDED, payment.getStatus());
-        verify(paymentRepository, times(2)).update(payment);
+        verify(paymentRepository, times(1)).save(payment);
+        verify(paymentRepository, times(1)).update(payment);
         verify(studentRepository, times(2)).update(testStudent);
     }
 

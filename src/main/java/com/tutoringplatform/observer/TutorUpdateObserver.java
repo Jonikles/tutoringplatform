@@ -21,14 +21,17 @@ public class TutorUpdateObserver implements BookingObserver {
             for (int i = 0; i < event.getBooking().getDurationHours(); i++) {
                 tutor.removeAvailability(day, startHour + i);
             }
-            System.out.println("TutorUpdateObserver: Updated tutor availability after booking confirmation for " + day + " at " + startHour + "h.");
+            System.out.println("TutorUpdateObserver: Updated tutor availability after booking confirmation for " + day
+                    + " at " + startHour + "h.");
+            tutorRepository.update(tutor);
+
         } else if (event.getEventType() == BookingEvent.EventType.CANCELLED) {
             for (int i = 0; i < event.getBooking().getDurationHours(); i++) {
                 tutor.addAvailability(day, startHour + i);
             }
-            System.out.println("TutorUpdateObserver: Restored tutor availability after booking cancellation for " + day + " at " + startHour + "h.");
+            System.out.println("TutorUpdateObserver: Restored tutor availability after booking cancellation for " + day
+                    + " at " + startHour + "h.");
+            tutorRepository.update(tutor);
         }
-
-        tutorRepository.update(tutor);
     }
 }

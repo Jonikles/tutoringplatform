@@ -25,9 +25,7 @@ public class ReviewService {
     private IStudentRepository studentRepository;
 
     public Review createReview(String bookingId, int rating, String comment) throws Exception {
-        if (rating < 1 || rating > 5) {
-            throw new IllegalArgumentException("Rating must be between 1 and 5");
-        }
+
 
         Booking booking = bookingRepository.findById(bookingId);
         if (booking == null) {
@@ -42,6 +40,9 @@ public class ReviewService {
             throw new Exception("Review already exists for this booking");
         }
 
+        if (rating < 1 || rating > 5) {
+            throw new IllegalArgumentException("Rating must be between 1 and 5");
+        }
         Review review = new Review(booking.getStudentId(), booking.getTutorId(), bookingId, rating, comment);
         reviewRepository.save(review);
 

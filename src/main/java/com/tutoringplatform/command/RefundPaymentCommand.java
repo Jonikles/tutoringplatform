@@ -4,6 +4,7 @@ package com.tutoringplatform.command;
 import com.tutoringplatform.models.Payment;
 import com.tutoringplatform.models.Student;
 import com.tutoringplatform.repositories.interfaces.IPaymentCommand;
+import com.tutoringplatform.repositories.interfaces.IPaymentRepository;
 import com.tutoringplatform.repositories.interfaces.IStudentRepository;
 
 public class RefundPaymentCommand implements IPaymentCommand {

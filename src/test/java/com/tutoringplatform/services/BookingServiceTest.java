@@ -51,8 +51,11 @@ class BookingServiceTest {
         bookingTime = LocalDateTime.now().plusDays(1).withHour(15).withMinute(0);
 
         testTutor.addSubject(testSubject);
-        testTutor.addAvailability("Monday", 15);
-        testTutor.addAvailability("Monday", 16);
+        String dayOfWeek = bookingTime.getDayOfWeek().name();
+        dayOfWeek = dayOfWeek.substring(0, 1) + dayOfWeek.substring(1).toLowerCase();
+
+        testTutor.addAvailability(dayOfWeek, 15);
+        testTutor.addAvailability(dayOfWeek, 16);
     }
 
     @Test
