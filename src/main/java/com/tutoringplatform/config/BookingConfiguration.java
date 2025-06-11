@@ -18,11 +18,9 @@ public class BookingConfiguration {
 
     @PostConstruct
     public void setupObservers() {
-        // Create and add observers
         BookingLogger bookingLogger = new BookingLogger();
         TutorUpdateObserver tutorUpdateObserver = new TutorUpdateObserver(tutorRepository);
 
-        // Register observers with booking service
         bookingService.addObserver(bookingLogger);
         bookingService.addObserver(tutorUpdateObserver);
 
