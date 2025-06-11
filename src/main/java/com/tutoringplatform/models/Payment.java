@@ -21,7 +21,7 @@ public class Payment {
         this.amount = amount;
         this.status = PaymentStatus.PENDING;
         this.timestamp = LocalDateTime.now();
-        this.transactionId = "TXN-" + UUID.randomUUID().toString().substring(0, 8);
+        this.transactionId = UUID.randomUUID().toString();
     }
 
     public String getId() { return id; }

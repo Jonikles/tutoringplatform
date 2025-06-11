@@ -457,7 +457,6 @@
 </head>
 
 <body>
-    <!-- Login/Signup Section -->
     <div id="authSection">
         <h1>📚 Tutoring Platform</h1>
 
@@ -491,7 +490,6 @@
         </div>
     </div>
 
-    <!-- Student Dashboard -->
     <div id="studentDashboard" style="display:none">
         <div class="welcome-section">
             <div>
@@ -531,7 +529,6 @@
         <button onclick="logout()">Logout</button>
     </div>
 
-    <!-- Tutor Dashboard -->
     <div id="tutorDashboard" style="display:none">
         <div class="welcome-section">
             <div>
@@ -583,7 +580,6 @@
         <button onclick="logout()">Logout</button>
     </div>
     
-    <!-- Booking Modal -->
     <div id="bookingModal" style="display:none;">
         <h3>📅 Book a Session</h3>
         <p><strong>Tutor:</strong> <span id="bookingTutorName"></span></p>
@@ -602,7 +598,6 @@
         let currentUser = null;
         let selectedTutorId = null;
         
-        // Auth Functions
         async function login() {
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
@@ -672,14 +667,11 @@
             loadSubjects();
         }
         
-        // Student Functions
         async function loadStudentData() {
-            // Load balance
             const balanceRes = await fetch(`${API_BASE}/students/${currentUser.id}/balance`);
             const balanceData = await balanceRes.json();
             document.getElementById('studentBalance').textContent = balanceData.balance;
             
-            // Load bookings
             loadStudentBookings();
         }
         
@@ -777,21 +769,16 @@
             }
         }
         
-        // Tutor Functions
         async function loadTutorData() {
-            // Load earnings
             const earningsRes = await fetch(`${API_BASE}/tutors/${currentUser.id}/earnings`);
             const earningsData = await earningsRes.json();
             document.getElementById('tutorEarnings').textContent = earningsData.earnings;
             document.getElementById('tutorRate').textContent = currentUser.hourlyRate;
             
-            // Load subjects
             loadTutorSubjects();
             
-            // Load availability
             loadTutorAvailability();
             
-            // Load bookings
             loadTutorBookings();
         }
         
@@ -812,7 +799,6 @@
                 });
                 
                 if (response.ok) {
-                    // Refresh tutor data
                     const tutorRes = await fetch(`${API_BASE}/tutors/${currentUser.id}`);
                     currentUser = await tutorRes.json();
                     loadTutorSubjects();
@@ -842,7 +828,6 @@
         }
         
         async function loadTutorAvailability() {
-            // Refresh tutor data to get updated availability
             const response = await fetch(`${API_BASE}/tutors/${currentUser.id}`);
             currentUser = await response.json();
             
@@ -894,12 +879,10 @@
             }
         }
         
-        // Booking Functions
         function openBookingModal(tutorId, tutorName) {
             selectedTutorId = tutorId;
             document.getElementById('bookingTutorName').textContent = tutorName;
             
-            // Load tutor's subjects
             fetch(`${API_BASE}/tutors/${tutorId}`)
                 .then(res => res.json())
                 .then(tutor => {
@@ -951,7 +934,6 @@
             }
         }
         
-        // Utility Functions
         async function loadSubjects() {
             try {
                 const response = await fetch(`${API_BASE}/subjects`);

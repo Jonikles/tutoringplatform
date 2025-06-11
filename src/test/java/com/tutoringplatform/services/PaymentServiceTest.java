@@ -2,7 +2,6 @@ package com.tutoringplatform.services;
 
 import com.tutoringplatform.models.*;
 import com.tutoringplatform.repositories.interfaces.*;
-import com.tutoringplatform.command.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
