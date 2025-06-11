@@ -24,6 +24,6 @@ public class BookingConfiguration {
         bookingService.addObserver(bookingLogger);
         bookingService.addObserver(tutorUpdateObserver);
 
-        System.out.println("✓ Booking observers configured: Logger and TutorUpdater registered");
+        System.out.println("Booking observers configured: Logger and TutorUpdater registered");
     }
 }

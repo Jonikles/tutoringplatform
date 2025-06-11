@@ -10,6 +10,7 @@ com\tutoringplatform\models\User$UserType.class
 com\tutoringplatform\observer\BookingObserver.class
 com\tutoringplatform\repositories\interfaces\ISubjectRepository.class
 com\tutoringplatform\controllers\SubjectController.class
+com\tutoringplatform\models\Tutor$AvailabilitySlot.class
 com\tutoringplatform\repositories\interfaces\IPaymentRepository.class
 com\tutoringplatform\command\RefundPaymentCommand.class
 com\tutoringplatform\repositories\impl\BookingRepository.class

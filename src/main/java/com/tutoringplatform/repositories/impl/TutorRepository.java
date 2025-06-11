@@ -30,26 +30,6 @@ public class TutorRepository implements ITutorRepository {
     }
 
     @Override
-    public List<Tutor> findAll() {
-        return new ArrayList<>(tutors.values());
-    }
-
-    @Override
-    public void save(Tutor tutor) {
-        tutors.put(tutor.getId(), tutor);
-    }
-
-    @Override
-    public void update(Tutor tutor) {
-        tutors.put(tutor.getId(), tutor);
-    }
-
-    @Override
-    public void delete(String id) {
-        tutors.remove(id);
-    }
-
-    @Override
     public List<Tutor> findBySubject(Subject subject) {
         return tutors.values().stream()
                 .filter(t -> t.getSubjects().contains(subject))
@@ -69,4 +49,26 @@ public class TutorRepository implements ITutorRepository {
                 .filter(t -> t.getAverageRating() >= rating)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<Tutor> findAll() {
+        return new ArrayList<>(tutors.values());
+    }
+
+    @Override
+    public void save(Tutor tutor) {
+        tutors.put(tutor.getId(), tutor);
+    }
+
+    @Override
+    public void update(Tutor tutor) {
+        tutors.put(tutor.getId(), tutor);
+    }
+
+    @Override
+    public void delete(String id) {
+        tutors.remove(id);
+    }
+
+
 }

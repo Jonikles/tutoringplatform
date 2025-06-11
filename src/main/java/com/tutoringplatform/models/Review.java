@@ -35,13 +35,7 @@ public class Review {
     public void setBookingId(String bookingId) { this.bookingId = bookingId; }
 
     public int getRating() { return rating; }
-
-    public void setRating(int rating) {
-        if (rating < 1 || rating > 5) {
-            throw new IllegalArgumentException("Rating must be between 1 and 5");
-        }
-        this.rating = rating;
-    }
+    public void setRating(int rating) { this.rating = rating; }
 
     public String getComment() { return comment; }
     public void setComment(String comment) { this.comment = comment; }
